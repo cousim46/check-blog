@@ -1,0 +1,3 @@
+blog :
+  address : ${BLOG_ADDRESS}
+  type : ${BLOG_TYPE} # Tistory or Velog
