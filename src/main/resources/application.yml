@@ -1,3 +1,9 @@
 blog :
   url : ${BLOG_ADDRESS}
   type : ${BLOG_TYPE} # tistory or velog
+message:
+  api-key : ${API_KEY} # 메시지 플랫폼에서 발급받은 API 키
+  secret-key : ${SECRET_KEY} # 메시지 플랫폼에서 발급받은 시크릿키
+  receiver-numbers : ${RECEIVER_NUMBERS} # 수신할 전화번호들 (ex : 010xxxxxxxx,010oooooooo)
+  send-number : ${SEND_NUMBER} # 발신할 번호
+  platform-url : ${PLATFORM_URL} # 메시지 플랫폼 인증하기 위한 URL (플랫폼별로 다를 수 있어 해당부분 삭제해도됨)
