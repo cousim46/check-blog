@@ -18,4 +18,6 @@ public interface BlogService {
     }
 
     boolean isBetween7DaysBlogWrite(String blogUrl,LocalDate now);
+
+    boolean isWrite(LocalDate now, String element);
 }
