@@ -1,29 +1,19 @@
 package org.example.blog.service.blog;
 
 import java.time.LocalDate;
-import java.util.List;
-import org.example.blog.convert.DateFormatConverter;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
 
 @Service(value = "velog")
-public class VelogService implements BlogService{
-
+public class VelogService implements BlogService {
     @Override
-    public boolean isBetween7DaysBlogWrite(String blogUrl, LocalDate now) {
-        String content = getContent(blogUrl);
-        return isWrite(now, content);
-    }
-
-    @Override
-    public boolean isWrite(LocalDate now, String element) {
-        for (int i = 1; i <= 7; i++) {
-            LocalDate localDate = now.minusDays(i);
-            List<String> convertDates = DateFormatConverter.convertVelogDateToString(localDate);
-            boolean isWrite = convertDates.stream().filter(element::contains).count() > 0;
-            if (isWrite) {
-                return true;
-            }
-        }
-        return false;
+    public LocalDate findLastWroteAt(String html) {
+        Document document = Jsoup.parse(html);
+        String lastWroteAt = Objects.requireNonNull(document.selectFirst("body > div > div.BasicLayout_block__6bmSl > div.responsive_mainResponsive___uG64 > main > div > section > div.VelogPosts_block__nfCQF > div.FlatPostCardList_block__VoFQe > div:nth-child(1) > div.FlatPostCard_subInfo__cT3J6 > span:nth-child(1)")).text();
+        return DateTimeFormatter.ofPattern("yyyy년 M월 d일").parse(lastWroteAt, LocalDate::from);
     }
 }
