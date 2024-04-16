@@ -6,7 +6,7 @@ import org.example.blog.convert.DateFormatConverter;
 import org.springframework.stereotype.Service;
 
 @Service(value = "velog")
-public class VelogService implements BlogService{
+public class VelogServiceImpl implements BlogService{
 
     @Override
     public boolean isBetween7DaysBlogWrite(String blogUrl, LocalDate now) {
