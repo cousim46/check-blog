@@ -11,7 +11,6 @@ public class TistoryServiceImpl implements BlogService {
     @Override
     public boolean isBetween7DaysBlogWrite(String blogUrl, LocalDate now) {
         String content = getContent(blogUrl);
-        System.out.println("tisory");
         return isWrite(now, content);
     }
 
